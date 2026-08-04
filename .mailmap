@@ -1,0 +1,9 @@
+# Git mailmap file
+# Keep it updated and alphabetically sorted
+# Allows to pack commits with several Git user.name and user.email configurations to the same person
+# Use "git shortlog -sne" for logs
+
+# Humans
+
+Pierre-Yves LAPERSONNE <pierreyves.lapersonne@orange.com> Pierre-Yves Lapersonne <pierreyves.lapersonne@orange.com>
+Ludovic PINEL <ludovic.pinel@orange.com> Ludovic Pinel <ludovic.pinel@orange.com>
