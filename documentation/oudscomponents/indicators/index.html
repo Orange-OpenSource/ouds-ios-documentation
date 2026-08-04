@@ -1,0 +1,46 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>Indicators</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="Some components can be used for indicators." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>Indicators</li></ul><p>Article</p><h1>Indicators</h1><p>Some components can be used for <b>indicators</b>.</p></section><h2>Overview</h2><h3>Badge</h3><p>The badge is a small UI element used to highlight status, notifications, or categorization within an interface.</p><h4>Badge Count</h4><p>An <a href="../oudsbadgecount/index.html"><code>OUDSBadgeCount</code></a> displays an integer value.</p><pre class="swift"><code>// Neutral badge in medium size with an image
+OUDSBadgeIcon(status: .neutral(image: OUDSImage(asset: Image(decorative: "ic_heart"), accessibilityLabel: "Like"), size: .medium))
+</code></pre><h4>Badge Icon</h4><p>An <a href="../oudsbadgeicon/index.html"><code>OUDSBadgeIcon</code></a> displays only an icon and has specific colors.</p><pre class="swift"><code>// Neutral badge in medium size with an image
+OUDSBadgeIcon(status: .neutral(image: OUDSImage(asset: Image(decorative: "ic_heart"), accessibilityLabel: "Like"), size: .medium))
+</code></pre><h4>Badge Standard</h4><p>An <a href="../oudsbadgestandard/index.html"><code>OUDSBadgeStandard</code></a> is an empty badge like a coloured pastille.</p><pre class="swift"><code>// Info badge in medium size without information
+OUDSBadgeStandard(status: .info, size: .medium)
+</code></pre><h3>Tag</h3><p>An <a href="../oudstag/index.html"><code>OUDSTag</code></a> is a small element that shows short information like a label, keyword, or category. It helps users quickly find, group, or understand content.</p><pre class="swift"><code>// Text only with neutral status, for emphasized appearance with rounded shape in default size
+OUDSTag(label: "Label",  status: .neutral(), appearance: .emphasized, shape: .rounded, size: .default)
+// Or also
+OUDSTag(label: "Label")
+            
+// Tag with negative status with bullet
+OUDSTag(label: "Label", status: .negative(leading: .bullet)
+            
+// Tag with neutral status with a custom decorative icon
+OUDSTag(label: "Label", status: .neutral(image: OUDSImage(asset: Image(decorative: "ic_heart"))))
+// Flip the icon for RTL layouts using OUDSImage.flipped
+OUDSTag(label: "Label", status: .neutral(image: OUDSImage(asset: Image(decorative: "ic_heart"), flipped: true)))
+
+// Tag with neutral status with a raw image (not tinted)
+OUDSTag(label: "Label", status: .neutral(image: OUDSImage(asset: Image("ic_brand"), renderingMode: .original)))
+
+// Tag with accent status with a raw image (not tinted)
+OUDSTag(label: "Label", status: .accent(image: OUDSImage(asset: Image("ic_brand"), renderingMode: .original)))
+            
+// Text with neutral status with bullet
+OUDSTag(label: "Label", status: .neutral(bullet: true))
+            
+// Tag with loader with rounded shape in small size
+OUDSTag(loadingLabel: "Label", shape: .rounded, size: .small)
+</code></pre><h3>Input Tag</h3><p>An <a href="../oudsinputtag/index.html"><code>OUDSInputTag</code></a> is a small element that shows short information like a label, keyword, or category, which can be removed or changed on tap.</p><pre class="swift"><code>// Create an input tag
+OUDSInputTag("Label") {
+    // Do something, usually remove itself from a list
+}
+    
+// Show in a list and remove when clicked
+var names: [String] = [ "Foo", "Bar", "Wizz" ]
+    
+ForEach(names, id: \.self) { name in
+    OUDSInputTag(label: name) {
+        if let index = names.firstIndex(of: name) {
+            names.remove(at: index)
+        }
+    }
+}
+</code></pre></article></noscript><div id="app"></div></body></html>

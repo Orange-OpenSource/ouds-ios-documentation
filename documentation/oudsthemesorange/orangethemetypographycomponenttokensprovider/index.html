@@ -1,0 +1,32 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>OrangeThemeTypographyComponentTokensProvider</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="A class which wraps all component  tokens of typography for typography components like `OUDSText`. Contains also references to semantic tokens providers so as to be able to use them to define the component tokens. This provider should be integrated as a `AllTypographyComponentTokensProvider` implementation inside `OUDSTheme` so as to provide all tokens to the users. It helps users to override some of the tokens and assign them to an `OUDSTheme` implementation to use. Custom themes can use subclass of ``doc://OUDSThemesOrange/documentation/OUDSThemesOrange/OrangeThemeTypographyComponentTokensProvider`` and apply the provider they need. It implements also the protocol `TypographyComponentTokens` so as to expose the component tokens for typography through any `OUDSTheme`. Typography components tokens are defined with semantic tokens of spaces (from `AllSpaceSemanticTokensProvider`)." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Theme Orange</a></li><li>OrangeThemeTypographyComponentTokensProvider</li></ul><p>Class</p><h1>OrangeThemeTypographyComponentTokensProvider</h1><p>A class which wraps all <b>component  tokens of typography</b> for <i>typography</i> components like <code>OUDSText</code>. Contains also references to semantic tokens providers so as to be able to use them to define the component tokens. This provider should be integrated as a <code>AllTypographyComponentTokensProvider</code> implementation inside <code>OUDSTheme</code> so as to provide all tokens to the users. It helps users to override some of the tokens and assign them to an <code>OUDSTheme</code> implementation to use. Custom themes can use subclass of <a href="."><code>OrangeThemeTypographyComponentTokensProvider</code></a> and apply the provider they need. It implements also the protocol <code>TypographyComponentTokens</code> so as to expose the component tokens for <i>typography</i> through any <code>OUDSTheme</code>. <i>Typography</i> components tokens are defined with semantic tokens of spaces (from <code>AllSpaceSemanticTokensProvider</code>).</p><pre><code>class OrangeThemeTypographyComponentTokensProvider</code></pre></section><h2>Overview</h2><pre class="swift"><code>    // Define your own provider for typography component tokens
+    // by inheriting from existing provider
+    class CustomTypographyComponentTokensProvider: OrangeThemeTypographyComponentTokensProvider {
+
+        // Then override the accordion component tokens you want.
+
+        override var spacePaddingBlockBottomExpandContainerDefault: SpaceSemanticToken { DimensionRawTokens._100 }
+
+        // ...
+    }
+
+    // Or define your own provider from scratch
+    class CustomTypographyComponentTokensProvider: AllTypographyComponentTokens {
+
+        // And implement hundreds of tokens.
+        // You are allowed to give semantic tokens providers if you want to define values.
+    }
+</code></pre><p>Then, you can give this <code>CustomTypographyComponentTokensProvider</code> to your own theme implementation:</p><pre class="swift"><code>class LocalTheme: OrangeTheme {
+
+    override init() {
+        super.init(typography: CustomTypographyComponentTokensProvider())
+    }
+}
+</code></pre><p>or to an already existing theme for example:</p><pre class="swift"><code>    OrangeTheme(typography: CustomTypographyComponentTokensProvider())
+</code></pre><p>It is also possible to use your own semantic tokens providers for this component tokens providers:</p><pre class="swift"><code>    // Uses by default here:
+    // - OrangeThemeSpaceSemanticTokensProvider for spaces
+    let typographyComponentTokensProvider = OrangeThemeTypographyComponentTokensProvider()
+
+    // Or use your own semantic tokens providers
+    let typographyComponentTokensProvider = OrangeThemeTypographyComponentTokensProvider(
+                    spaces: CustomSpaceSemanticTokensProvider())
+</code></pre><blockquote class="aside since"><p class="label">Since</p><p>3.0.0</p></blockquote><h2>Topics</h2><h3>Initializers</h3><ul><li><a href="init(spaces:)/index.html"><code>init(spaces: (any AllSpaceSemanticTokensProvider)?)</code><p>Defines a provider of component tokens dedicated to progress indicators.</p></a></li></ul><h3>Instance Properties</h3><ul><li><a href="spaces/index.html"><code>let spaces: any AllSpaceSemanticTokensProvider</code><p>Provider of spaces semantic tokens to use for button spaces</p></a></li></ul></article></noscript><div id="app"></div></body></html>

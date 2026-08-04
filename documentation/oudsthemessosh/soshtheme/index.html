@@ -1,0 +1,12 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>SoshTheme</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="This is the theme for Sosh brand. This is an override of the default basic `OUDSTheme` for the Sosh brand theme It can override any properties from its superclass, and but cannot be derived ; this is not allowed." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Theme Sosh</a></li><li>SoshTheme</li></ul><p>Class</p><h1>SoshTheme</h1><p>This is the theme for Sosh brand. This is an override of the default basic <code>OUDSTheme</code> for the <b>Sosh brand theme</b> It can override any properties from its superclass, and but cannot be derived ; this is not allowed.</p><pre><code>final class SoshTheme</code></pre></section><h2>Usages</h2><p>Sosh products must use this Sosh theme. It provides all Sosh brand colors and also the Sosh fonts</p><p>To get it:</p><pre class="swift"><code>    @Environment(\.theme) var theme
+</code></pre><h2>Integration</h2><p>To use this theme, inject it to your view using <code>OUDSThemeableView</code> and get it through environment variable.</p><pre class="swift"><code>    @main
+    struct YourApp: App {
+        var body: some Scene {
+            WindowGroup {
+                OUDSThemeableView(theme: SoshTheme()) {
+                    // Your root view
+                }
+            }
+        }
+    }
+</code></pre><h1>Theme tuning</h1><p>This theme cannot be customized more.</p><h2>Tokens versions</h2><ul><li><p>Core OUDS version: 1.10.0</p></li><li><p>Core Sosh version: 1.4.0</p></li><li><p>Brand Sosh version: 2.5.0</p></li></ul><blockquote class="aside since"><p class="label">Since</p><p>0.17.0</p></blockquote><h2>Topics</h2><h3>Initializers</h3><ul><li><a href="init()/index.html"><code>init()</code><p>Constructor of the Sosh theme with its own providers of tokens.</p></a></li></ul><h3>Type Properties</h3><ul><li><a href="name/index.html"><code>static let name: String</code><p>The theme name (“Sosh”)</p></a></li></ul></article></noscript><div id="app"></div></body></html>

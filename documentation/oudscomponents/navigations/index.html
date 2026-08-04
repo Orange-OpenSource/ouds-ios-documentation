@@ -1,0 +1,110 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>Navigations</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="Some components can be used for navigation." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>Navigations</li></ul><p>Article</p><h1>Navigations</h1><p>Some components can be used for <b>navigation</b>.</p></section><h2>Overview</h2><h3>Links</h3><p>The <a href="../oudslink/index.html"><code>OUDSLink</code></a> proposes layout with text only or text with icon. It also proposes layout to navigate forward, backward and outside the app. The link can be displayed in <code>small</code> or <code>default</code> size.</p><pre class="swift"><code>// Text in small size, with next indicator
+OUDSLink(text: "Feedback", indicator: .next, size: .small) { /* the action to process */ }
+
+// Text and icon in default size
+OUDSLink(text: "Feedback", image: OUDSImage(asset: Image("ic_heart")), size: .default) {}
+
+// Text and raw icon (not tinted)
+OUDSLink(text: "Brand", image: OUDSImage(asset: Image("ic_brand"), renderingMode: .original), size: .default) {}
+
+// Navigate to previous page with link in a default size
+OUDSLink(text: "Back", indicator: .previous, size: .default) { /* the action to process */ }
+
+// Navigate to outside the app with link in a default size
+OUDSLink(text: "Open outside", indicator: .external, size: .default) { /* the action to process */ }
+</code></pre><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
+// Declare a @State to hold the selected tab index, then pass it as a binding.
+@State private var selectedTab = 0
+
+OUDSTabBar(selectedTab: $selectedTab, count: 3) {
+        
+    // Add the views with the SwiftUI tab item and labels
+    // No need to define colors, everything is done inside OUDSTabBar
+    SomeView()
+        .tabItem {
+            Label("Label 1", image: "image_1")
+        }
+        .tag(0)
+    OtherView()
+        .tabItem {
+            Label("Label 2", image: "image_2")
+        }
+        .tag(1)
+    LastView()
+        .tabItem {
+            Label("Label 3", image: "image_3")
+        }
+        .tag(2)
+}
+</code></pre><h3>Tab views</h3><p>The <a href="../oudstabview/index.html"><code>OUDSTabView</code></a> and <a href="../oudsliquidglasstabview/index.html"><code>OUDSLiquidGlassTabView</code></a> use the native SwiftUI <code>Tab</code> API with OUDS styles. They are complementary to <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a>:</p><ul><li><p><a href="../oudstabview/index.html"><code>OUDSTabView</code></a> — iOS 18+ / macOS 15+ / visionOS 2+, exposes a <code>Binding&lt;Int&gt;</code> for programmatic selection, requires an explicit <code>value: Int</code> on every <code>Tab</code>.</p></li><li><p><a href="../oudsliquidglasstabview/index.html"><code>OUDSLiquidGlassTabView</code></a> — iOS 26+ / macOS 26+ / visionOS 26+ only, accepts <code>Tab</code> without <code>value:</code> and <code>Tab(role: .search)</code>, selection is managed natively.</p></li></ul><pre class="swift"><code>// OUDSTabView — iOS 18+
+// Every Tab must carry an explicit value: Int matching the selectedTab binding
+@State private var selectedTab = 0
+
+OUDSTabView(selectedTab: $selectedTab, count: 4) {
+    Tab("Label 1", image: "image_1", value: 0) { FirstView() }
+    Tab("Label 2", image: "image_2", value: 1) { SecondView() }
+    Tab("Label 3", image: "image_3", value: 2) { ThirdView() }
+    Tab(value: 3, role: .search) { SearchView() }
+}
+</code></pre><pre class="swift"><code>// OUDSLiquidGlassTabView — iOS 26+ only
+// Supports Tab without value: and Tab(role: .search), no selection binding
+OUDSLiquidGlassTabView {
+    Tab("Label 1", image: "image_1") { FirstView() }
+    Tab("Label 2", image: "image_2") { SecondView() }
+    Tab("Label 3", image: "image_3") { ThirdView() }
+    Tab(role: .search) { SearchView() }
+}
+</code></pre><h3>Toolbars</h3><p>The toolbars components provide top and bottom navigation bars. They rely on SwiftUI toolbars and expose OUDS styles. Top toolbars provide a title and optional subtitle, while bottom toolbars focus on actions.</p><p>There are different style depending to Liquid Glass (iOS 26+) or not (iOS 18 and older).</p><h4>Top toolbar</h4><pre class="swift"><code>// Apply once on the root NavigationStack to style the system navigation bar
+NavigationStack {
+    SomeView()
+        .toolBarTop("Title",
+                    leadingItems: {
+                        // Back button — system dismiss is automatic, no closure needed
+                        OUDSToolBarItem(navigation: .back())
+                    },
+                    trailingItems: {
+                        OUDSToolBarItem(label: "Label") { /* Action to process */ }
+                        OUDSToolBarItem(icon: Image(decorative: "some_image"), accessibilityLabel: "Label") { /* Action to process */ }
+                    })
+}
+.oudsNavigationBarAppearance() // required — apply on the NavigationStack, not on the child view
+
+// Close button — .close takes NO closure, dismiss is handled automatically
+SomeView()
+    .toolBarTop("Title",
+                leadingItems: {
+                    OUDSToolBarItem(navigation: .close)
+                })
+
+// Back button with a visible label (label text is ignored on iOS 26+ / Liquid Glass)
+SomeView()
+    .toolBarTop("Title",
+                leadingItems: {
+                    OUDSToolBarItem(navigation: .back(label: "Cancel"))
+                })
+
+// Back button with custom action executed before automatic dismiss
+SomeView()
+    .toolBarTop("Title",
+                leadingItems: {
+                    OUDSToolBarItem(navigation: .back(label: "Back") { saveDraft() })
+                })
+
+// On iOS ≤ 18, add on the root view to color the system back-button chevron correctly
+.accentColor(theme.colors.contentDefault)
+</code></pre><h4>Bottom toolbar</h4><pre class="swift"><code>// Leading + trailing split — works on all supported OS versions
+SomeView()
+    .toolBarBottom(leadingItems: {
+        OUDSToolBarItem(label: "Some label") { /* Action to process */ }
+    }, trailingItems: {
+        OUDSToolBarItem(icon: Image(decorative: "some_image"), accessibilityLabel: "Label") { /* Action to process */ }
+    })
+
+// Grouped / centered — meaningful on iOS 26+ (Liquid Glass) only
+// On earlier OS versions the system splits the items into leading/trailing positions.
+SomeView()
+    .toolBarBottom(groupedItems: {
+        OUDSToolBarItem(label: "Save") { /* Action to process */ }
+        OUDSToolBarItem(icon: Image(decorative: "ic_delete"), accessibilityLabel: "Delete") { /* Action to process */ }
+    })
+</code></pre></article></noscript><div id="app"></div></body></html>
