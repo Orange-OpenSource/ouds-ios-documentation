@@ -16,7 +16,7 @@
 
 [![Versions](https://img.shields.io/github/v/release/Orange-OpenSource/ouds-ios-documentation?label=Last%20version&style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-ios-documentation/releases)
 
-[![Code size](https://img.shields.io/github/languages/code-size/Orange-OpenSource/ouds-ios-documentation?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-io-documentations)
+[![GitHub Pages build deployment](https://github.com/Orange-OpenSource/ouds-ios-documentation/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Orange-OpenSource/ouds-ios-documentation/actions/workflows/pages/pages-build-deployment)
 
 ## 📦 Content
 
