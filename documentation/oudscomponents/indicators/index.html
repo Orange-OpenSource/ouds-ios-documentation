@@ -4,6 +4,11 @@ OUDSBadgeIcon(status: .neutral(image: OUDSImage(asset: Image(decorative: "ic_hea
 OUDSBadgeIcon(status: .neutral(image: OUDSImage(asset: Image(decorative: "ic_heart"), accessibilityLabel: "Like"), size: .medium))
 </code></pre><h4>Badge Standard</h4><p>An <a href="../oudsbadgestandard/index.html"><code>OUDSBadgeStandard</code></a> is an empty badge like a coloured pastille.</p><pre class="swift"><code>// Info badge in medium size without information
 OUDSBadgeStandard(status: .info, size: .medium)
+</code></pre><h3>Progress Indicators</h3><h4>Circular Progress Indicator</h4><p>An <a href="../oudscircularprogressindicator/index.html"><code>OUDSCircularProgressIndicator</code></a> is a progress indicator which can be used to display determinate value or indeterminate value with animations.</p><pre class="swift"><code>// A circular gauge filled at 75% in neutral color with a track displayed with an animation
+OUDSCircularProgressIndicator(progress: 0.75, status: .neutral)
+
+// A circular gauge without defined value and an accent color
+OUDSCircularProgressIndicator(status: .accent)
 </code></pre><h3>Tag</h3><p>An <a href="../oudstag/index.html"><code>OUDSTag</code></a> is a small element that shows short information like a label, keyword, or category. It helps users quickly find, group, or understand content.</p><pre class="swift"><code>// Text only with neutral status, for emphasized appearance with rounded shape in default size
 OUDSTag(label: "Label",  status: .neutral(), appearance: .emphasized, shape: .rounded, size: .default)
 // Or also
