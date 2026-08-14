@@ -1,0 +1,27 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>OUDSListItemLeading</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="Defines the elements that can be displayed at the leading position (before the texts) of a list item such as ``doc://OUDSComponents/documentation/OUDSComponents/OUDSStaticListItem`` or ``doc://OUDSComponents/documentation/OUDSComponents/OUDSNavigationListItem``." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>OUDSListItemLeading</li></ul><p>Enumeration</p><h1>OUDSListItemLeading</h1><p>Defines the elements that can be displayed at the leading position (before the texts) of a list item such as <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> or <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a>.</p><ul id="availability"><li>iOS 15.0+</li><li>macOS 13.0+</li><li>tvOS 16.0+</li><li>visionOS 1.0+</li><li>watchOS 11.0+</li></ul><pre><code>@frozen enum OUDSListItemLeading</code></pre></section><h2>Overview</h2><p>The leading element provides visual context or identification alongside the textual content of the list item. Only one leading element can be set at a time.</p><p><b>Note:</b> When using <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> with an indicator type of <code>.previous</code>, the leading element is automatically hidden.</p><h2>Available options</h2><ul><li><p><code>icon</code>: A status or custom icon (see <a href="../oudslistitemicon/index.html"><code>OUDSListItemIcon</code></a>).</p></li><li><p><code>image</code>: A static image asset (see <a href="../oudslistitemimage/index.html"><code>OUDSListItemImage</code></a>).</p></li><li><p><code>flag</code>: A country flag image (see <a href="../oudslistitemflag/index.html"><code>OUDSListItemFlag</code></a>).</p></li><li><p><code>avatar</code>:  An avatar with icon, initials, or image (see <a href="../oudslistitemavatar/index.html"><code>OUDSListItemAvatar</code></a>).</p></li></ul><h2>Code samples</h2><pre class="swift"><code>    // Leading with a status icon
+    let icon = OUDSListItemIcon(type: .info, size: .medium)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        leading: .icon(icon)
+    )
+
+    // Leading with an image
+    let image = OUDSListItemImage(asset: Image("il_placeholder"), size: .medium)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        leading: .image(image)
+    )
+
+    // Leading with a country flag
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "France"),
+        leading: .flag(.init(asset: Image("il_flag_fr"), size: .medium))
+    )
+
+    // Leading with an avatar
+    let avatar = OUDSListItemAvatar(type: .icon, size: .medium)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Profile"),
+        leading: .avatar(avatar)
+    )
+</code></pre><h2>Media appearance</h2><p>Images can be displayed with rounded corners using the  <a href="../swiftuicore/view/oudslistitemroundedmedia(_:)/index.html"><code>oudsListItemRoundedMedia(_:)</code></a> view modifier.</p><h2>Small size behavior</h2><p>When the list item is displayed in small size (via <a href="../swiftuicore/view/oudslistitemsize(_:)/index.html"><code>oudsListItemSize(_:)</code></a>), leading elements such as avatars and icons are rendered in their smallest available size.</p><blockquote class="aside since"><p class="label">Since</p><p>3.0.0</p></blockquote><h2>Topics</h2><h3>Enumeration Cases</h3><ul><li><a href="avatar(_:)/index.html"><code>case avatar(OUDSListItemAvatar)</code><p>An avatar displayed at the leading position.</p></a></li><li><a href="flag(_:)/index.html"><code>case flag(OUDSListItemFlag)</code><p>A country flag image displayed at the leading position.</p></a></li><li><a href="icon(_:)/index.html"><code>case icon(OUDSListItemIcon)</code><p>A status or custom icon displayed at the leading position.</p></a></li><li><a href="image(_:)/index.html"><code>case image(OUDSListItemImage)</code><p>A static image asset displayed at the leading position.</p></a></li></ul></article></noscript><div id="app"></div></body></html>

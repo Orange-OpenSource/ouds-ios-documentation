@@ -1,0 +1,31 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>OUDSListItemContentStyle</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="Defines the visual style of a list item such as ``doc://OUDSComponents/documentation/OUDSComponents/OUDSStaticListItem`` or ``doc://OUDSComponents/documentation/OUDSComponents/OUDSNavigationListItem``." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>OUDSListItemContentStyle</li></ul><p>Enumeration</p><h1>OUDSListItemContentStyle</h1><p>Defines the visual style of a list item such as <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> or <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a>.</p><ul id="availability"><li>iOS 15.0+</li><li>macOS 13.0+</li><li>tvOS 16.0+</li><li>visionOS 1.0+</li><li>watchOS 11.0+</li></ul><pre><code>@frozen enum OUDSListItemContentStyle</code></pre></section><h2>Overview</h2><p>The style controls the border, divider, and background appearance of list items. Use the <a href="../swiftuicore/view/oudslistcontentstyle(_:)/index.html"><code>oudsListContentStyle(_:)</code></a>, <a href="../swiftuicore/view/oudslistitemstyle(divider:background:)/index.html"><code>oudsListItemStyle(divider:background:)</code></a> or <a href="../swiftuicore/view/oudslistcardstyle(_:)/index.html"><code>oudsListCardStyle(_:)</code></a> view modifiers to apply the style on list items.</p><h2>Cases</h2><ul><li><p><b><code>.card(_:)</code></b>: A card-like appearance with various sub-styles (decoration) defined by <a href="card(_:)/index.html"><code>OUDSListItemContentStyle.card(_:)</code></a>. Cards can be outlined, have a background, or combine these effects only on interaction.</p></li><li><p><b><code>.item(_:)</code></b>: A standard list item appearance with an optional background and divider, defined by <a href="item(divider:background:)/index.html"><code>OUDSListItemContentStyle.item(divider:background:)</code></a>.</p></li></ul><h2>Known limitation</h2><p>The <code>onlyOnInteraction</code> flag of the <code>outlined</code> decoration of a card has no action on <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a>, because the item does not propose interaction (e.g. pressed or hover state)</p><h2>Code samples</h2><pre class="swift"><code>    // Card style with outline only on interaction
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListCardStyle(decoration: .outlined(onInteractionOnly: true))
+
+    // Card style with an outlined border on all states
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListCardStyle(decoration: .outlined(onInteractionOnly: false))
+
+    // Card style with divider, background
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListCardStyle(decoration: .standard(divider: true, background: true))
+
+    // Card style divider and without background
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListCardStyle(decoration: .standard(divider: true, background: false))
+
+    // Item style with background and divider
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListItemStyle(divider: true, .background: true)
+
+    // Item style with divider and without background
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListItemStyle(divider: true, .background: false)
+
+    // Using global modifier
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListContentStyle(.card(.outlined))
+
+    OUDSNavigationListItem(data: OUDSListItemData(label: "Label"))
+        .oudsListContentStyle(.item(divider: true, background: false))
+</code></pre><blockquote class="aside since"><p class="label">Since</p><p>3.0.0</p></blockquote><h2>Topics</h2><h3>Enumeration Cases</h3><ul><li><a href="card(_:)/index.html"><code>case card(OUDSListItemContentStyle.CardDecoration)</code><p>The card style of the <code>OUDSNavigationListItem</code> and <code>OUDSStaticListItem</code>. It controls how the card border, background, and divider behave, including whether these visual effects are always visible or only appear during interaction (e.g. press, hover).</p></a></li><li><a href="item(divider:background:)/index.html"><code>case item(divider: Bool, background: Bool)</code><p>The item style of the <code>OUDSNavigationListItem</code> and <code>OUDSStaticListItem</code>. It controls how the background and divider behave for regular list items, including whether these visual effects are always visible or only appear during interaction. (e.g. press, hover).</p></a></li></ul><h3>Enumerations</h3><ul><li><a href="carddecoration/index.html"><code>enum CardDecoration</code><p>Defines the decoration (sub-styles) available for the <a href="card(_:)/index.html"><code>OUDSListItemContentStyle.card(_:)</code></a> case.</p></a></li></ul></article></noscript><div id="app"></div></body></html>

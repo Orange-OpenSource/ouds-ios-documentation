@@ -31,21 +31,21 @@ struct YourApp: App {
 </code></pre><h2>Tunable theme</h2><p>The theme can be tuned with <code>Tuning</code> object to give at init. Some tuning object exists.</p><pre class="swift"><code>    // Define your theme tuning
     let tuning = Tuning(hasRoundedButtons: true, 
                         hasRoundedTextInputs: true,
-                        hasRoundedAlertMessages: true)
+                        hasRoundedAlertMessages: true,
+                        hasRoundedProgressIndicators: true,
+                        hasRoundedListItems: true)
 
     // Apply it to your theme
     let theme = OrangeTheme(tuning: tuning)
-    // Or in one line
-    let theme = OrangeTheme(tuning: Tuning(hasRoundedButtons: true, hasRoundedTextInputs: true, hasRoundedAlertMessages: true))
 
     // Or apply predefined tunings
     let orangeFranceTheme = OrangeTheme(tuning: Tuning.OrangeFrance)
     let orangeBusinessTheme = OrangeTheme(tuning: Tuning.OrangeBusiness)
     let maxitTheme = OrangeTheme(tuning: Tuning.MaxIt)
 </code></pre><h3>“Orange France” tuning</h3><p>A predefined tuning configuration is also available for Orange France, which is also the default tuning:</p><pre class="swift"><code>let theme = OrangeTheme(tuning: Tuning.OrangeFrance)
-</code></pre><p>It applies the following settings:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>❌ false</td></tr><tr><td>rounded corners text inputs</td><td>❌ false</td></tr><tr><td>rounded corners alert messages</td><td>❌ false</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr></tbody></table><h3>“Orange Business” tuning</h3><p>A predefined tuning configuration is also available for Orange Business:</p><pre class="swift"><code>let theme = OrangeTheme(tuning: Tuning.OrangeBusiness)
-</code></pre><p>It applies the following settings:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>❌ false</td></tr><tr><td>rounded corners text inputs</td><td>✅ true</td></tr><tr><td>rounded corners alert messages</td><td>✅ true</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr></tbody></table><h3>“Max it” tuning</h3><p>A predefined tuning configuration is also available for “Max it”:</p><pre class="swift"><code>let theme = OrangeTheme(tuning: Tuning.MaxIt)
-</code></pre><p>It applies the following settings:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>✅ true</td></tr><tr><td>rounded corners text inputs</td><td>✅ true</td></tr><tr><td>rounded corners alert messages</td><td>✅ true</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr></tbody></table><h2>Typography</h2><h3>Helvetica Neue</h3><p>The Orange theme uses <i>Helvetica Neue</i> typography. This font is already available through iOS. It is possible to use another typography, by the ones recommended are the ones defined in tokens. For Orange products the <i>Helevetica Neue</i> font family must be used.</p><pre class="swift"><code>// The three following instanciations are the same
+</code></pre><p>It applies the following settings:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>❌ false</td></tr><tr><td>rounded corners text inputs</td><td>❌ false</td></tr><tr><td>rounded corners alert messages</td><td>❌ false</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr><tr><td>rounded corners list items</td><td>❌ false</td></tr></tbody></table><h3>“Orange Business” tuning</h3><p>A predefined tuning configuration is also available for Orange Business:</p><pre class="swift"><code>let theme = OrangeTheme(tuning: Tuning.OrangeBusiness)
+</code></pre><p>It applies the following settings:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>❌ false</td></tr><tr><td>rounded corners text inputs</td><td>✅ true</td></tr><tr><td>rounded corners alert messages</td><td>✅ true</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr><tr><td>rounded corners list items</td><td>✅ true</td></tr></tbody></table><h3>“Max it” tuning</h3><p>A predefined tuning configuration is also available for “Max it”:</p><pre class="swift"><code>let theme = OrangeTheme(tuning: Tuning.MaxIt)
+</code></pre><p>It applies the following settings:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>✅ true</td></tr><tr><td>rounded corners text inputs</td><td>✅ true</td></tr><tr><td>rounded corners alert messages</td><td>✅ true</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr><tr><td>rounded corners list items</td><td>✅ true</td></tr></tbody></table><h2>Typography</h2><h3>Helvetica Neue</h3><p>The Orange theme uses <i>Helvetica Neue</i> typography. This font is already available through iOS. It is possible to use another typography, by the ones recommended are the ones defined in tokens. For Orange products the <i>Helevetica Neue</i> font family must be used.</p><pre class="swift"><code>// The three following instanciations are the same
 let theme = OrangeTheme()
 let theme = OrangeTheme(fontFamily: OrangeBrandFontRawTokens.familyBrandDefault)
 let theme = OrangeTheme(fontFamily: "HelveticaNeue") // Which is PostScript name of the font

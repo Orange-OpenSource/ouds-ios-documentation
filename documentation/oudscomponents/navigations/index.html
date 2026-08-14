@@ -12,6 +12,60 @@ OUDSLink(text: "Back", indicator: .previous, size: .default) { /* the action to 
 
 // Navigate to outside the app with link in a default size
 OUDSLink(text: "Open outside", indicator: .external, size: .default) { /* the action to process */ }
+</code></pre><h3>List items</h3><p>The <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> displays a non-interactive row of information, while <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> adds tap interaction and a navigation affordance indicator (chevron or external link icon).</p><p>Both components use an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> model for their textual content, and accept optional leading and trailing elements.</p><h4>Static list item</h4><p>Use <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> when the row is display-only and should not trigger any action or navigation.</p><pre class="swift"><code>// Simple list item with a label only
+OUDSStaticListItem(data: OUDSListItemData(label: "Label"))
+
+// List item with full textual content
+OUDSStaticListItem(data: OUDSListItemData(
+    label: "Label",
+    hasBoldLabel: true,
+    description: "Description",
+    overline: "Overline",
+    extraLabel: "Extra label",
+    helperText: "Helper text providing guidance"
+))
+
+// List item with a leading icon and a trailing badge
+let icon = OUDSListItemIcon(type: .info, size: .medium)
+
+OUDSStaticListItem(
+    data: OUDSListItemData(label: "Notifications"),
+    leading: .icon(icon),
+    trailing: .badge(.count(.init(3, accessibilityLabel: "3 notifications", status: .negative, size: .medium)))
+)
+</code></pre><h4>Navigable list item</h4><p>Use <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> when tapping the row should trigger an action. The <a href="../oudsnavigationlistitemindicatortype/index.html"><code>OUDSNavigationListItemIndicatorType</code></a> defines the visual indicator shown:</p><pre class="swift"><code>// Forward navigation (default)
+OUDSNavigationListItem(
+    data: OUDSListItemData(label: "Next screen")
+) {
+    // Navigate to next screen
+}
+
+// External navigation
+OUDSNavigationListItem(
+    data: OUDSListItemData(label: "Open website"),
+    indicatorType: .external
+) {
+    openURL(url)
+}
+
+// Backward navigation
+OUDSNavigationListItem(
+    data: OUDSListItemData(label: "Go back"),
+    indicatorType: .previous
+) {
+    // Navigate back
+}
+
+// With a leading avatar and a trailing text
+let avatar = OUDSListItemAvatar(type: .icon, size: .medium)
+
+OUDSNavigationListItem(
+    data: OUDSListItemData(label: "Profile", description: "View your profile"),
+    leading: .avatar(avatar),
+    trailing: .text(.labelMuted("Details"))
+) {
+    // Navigate to profile
+}
 </code></pre><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
 // Declare a @State to hold the selected tab index, then pass it as a binding.
 @State private var selectedTab = 0

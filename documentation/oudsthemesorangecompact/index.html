@@ -29,18 +29,20 @@ struct YourApp: App {
     }
 }
 </code></pre><p>This theme embeds and registers the fonts for the <code>Orange Compact</code> theme, you just need to use the theme object as is.</p><h2>Tunable theme</h2><p>The theme can be tuned with <code>Tuning</code> object to give at init. Some tuning object exists.</p><pre class="swift"><code>// Define your theme tuning
-let tuning = Tuning(hasRoundedButtons: true, hasRoundedTextInputs: true, hasRoundedAlertMessages: true)
+let tuning = Tuning(hasRoundedButtons: true, 
+                    hasRoundedTextInputs: true, 
+                    hasRoundedAlertMessages: true, 
+                    hasRoundedProgressIndicators: true,
+                    hasRoundedListItems: true)
 
 // Apply it to your theme
 let theme = OrangeCompactTheme(tuning: tuning)
-// Or in one line
-let theme = OrangeCompactTheme(tuning: Tuning(hasRoundedButtons: true, hasRoundedTextInputs: true, hasRoundedAlertMessages: true))
 
 // Or apply predefined tunings
 let orangeFranceTheme = OrangeCompactTheme(tuning: Tuning.OrangeFrance)
 let orangeBusinessTheme = OrangeCompactTheme(tuning: Tuning.OrangeBusiness)
 let maxitTheme = OrangeCompactTheme(tuning: Tuning.MaxIt)
-</code></pre><p>A default tuning is applied for this theme:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>❌ false</td></tr><tr><td>rounded corners text inputs</td><td>❌ false</td></tr><tr><td>rounded corners alert messages</td><td>❌ false</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr></tbody></table><h2>Typography</h2><h3>Helvetica Neue</h3><p>The Orange theme uses <i>Helvetica Neue</i> typography. This font is already available through iOS. It is possible to use another typography, by the ones recommended are the ones defined in tokens.</p><pre class="swift"><code>// The three following instanciations are the same
+</code></pre><p>A default tuning is applied for this theme:</p><table><thead><tr><th>Tunable elements</th><th>Default values</th></tr></thead><tbody><tr><td>rounded corners buttons</td><td>❌ false</td></tr><tr><td>rounded corners text inputs</td><td>❌ false</td></tr><tr><td>rounded corners alert messages</td><td>❌ false</td></tr><tr><td>rounded corners progress indicators</td><td>❌ false</td></tr><tr><td>rounded corners list items</td><td>❌ false</td></tr></tbody></table><h2>Typography</h2><h3>Helvetica Neue</h3><p>The Orange theme uses <i>Helvetica Neue</i> typography. This font is already available through iOS. It is possible to use another typography, by the ones recommended are the ones defined in tokens.</p><pre class="swift"><code>// The three following instanciations are the same
 let theme = OrangeCompactTheme()
 let theme = OrangeCompactTheme(fontFamily: OrangeBrandFontRawTokens.familyBrandDefault)
 let theme = OrangeCompactTheme(fontFamily: "HelveticaNeue") // Which is PostScript name of the font

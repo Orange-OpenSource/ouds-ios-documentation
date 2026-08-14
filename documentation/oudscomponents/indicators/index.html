@@ -9,6 +9,17 @@ OUDSCircularProgressIndicator(progress: 0.75, status: .neutral)
 
 // A circular gauge without defined value and an accent color
 OUDSCircularProgressIndicator(status: .accent)
+</code></pre><h4>Linear Progress Indicator</h4><p>An <a href="../oudslinearprogressindicator/index.html"><code>OUDSLinearProgressIndicator</code></a> is a horizontal progress indicator which can be used to display determinate value or indeterminate value animations.</p><pre class="swift"><code>// A horizontal bar filled at 75% in neutral color with a track and reveal animation
+OUDSLinearProgressIndicator(progress: 0.75, status: .neutral)
+
+// A horizontal bar without defined value and an accent color
+OUDSLinearProgressIndicator(status: .accent)
+
+// A horizontal bar with a helper text, a stop indicator (determinate only) and no animations
+OUDSLinearProgressIndicator(progress: 0.5, stopIndicator: true, helperText: "Uploading…", animated: false)
+
+// An indeterminate horizontal bar with a helper text
+OUDSLinearProgressIndicator(status: .info, helperText: "Processing…")
 </code></pre><h3>Tag</h3><p>An <a href="../oudstag/index.html"><code>OUDSTag</code></a> is a small element that shows short information like a label, keyword, or category. It helps users quickly find, group, or understand content.</p><pre class="swift"><code>// Text only with neutral status, for emphasized appearance with rounded shape in default size
 OUDSTag(label: "Label",  status: .neutral(), appearance: .emphasized, shape: .rounded, size: .default)
 // Or also

@@ -1,0 +1,58 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>OUDSListItemTrailing</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="Defines the elements that can be displayed at the trailing position (after the texts) of a list item such as ``doc://OUDSComponents/documentation/OUDSComponents/OUDSStaticListItem`` or ``doc://OUDSComponents/documentation/OUDSComponents/OUDSNavigationListItem``." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>OUDSListItemTrailing</li></ul><p>Enumeration</p><h1>OUDSListItemTrailing</h1><p>Defines the elements that can be displayed at the trailing position (after the texts) of a list item such as <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> or <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a>.</p><ul id="availability"><li>iOS 15.0+</li><li>macOS 13.0+</li><li>tvOS 16.0+</li><li>visionOS 1.0+</li><li>watchOS 11.0+</li></ul><pre><code>@frozen enum OUDSListItemTrailing</code></pre></section><h2>Overview</h2><p>The trailing element provides supplementary information, actions, or visual indicators alongside the textual content of the list item. Only one trailing element can be set at a time.</p><h2>Available options</h2><ul><li><p><code>text(_:)</code>: A textual element with various styles (see <a href="texttype/index.html"><code>OUDSListItemTrailing.TextType</code></a>).</p></li><li><p><code>badge(_:)</code>: A badge component (see <a href="../oudsbadgestandard/index.html"><code>OUDSBadgeStandard</code></a> or <a href="../oudsbadgecount/index.html"><code>OUDSBadgeCount</code></a>).</p></li><li><p><code>tag(_:)</code>: A tag component (see <a href="../oudstag/index.html"><code>OUDSTag</code></a>).</p></li><li><p><code>icon(_:)</code>: A status or custom icon (see <a href="../oudslistitemicon/index.html"><code>OUDSListItemIcon</code></a>).</p></li><li><p><code>image(_:)</code>: A static image asset (see <a href="../oudslistitemimage/index.html"><code>OUDSListItemImage</code></a>).</p></li><li><p><code>flag(_:)</code>: A country flag image (see <a href="../oudslistitemflag/index.html"><code>OUDSListItemFlag</code></a>).</p></li><li><p><code>avatar(_:)</code>:  An avatar with icon, initials, or image (see <a href="../oudslistitemavatar/index.html"><code>OUDSListItemAvatar</code></a>).</p></li></ul><h2>Code samples</h2><pre class="swift"><code>    // Trailing with a default label text
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        trailing: .text(.label("Info"))
+    )
+
+    // Trailing with a muted label
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        trailing: .text(.labelMuted("Secondary"))
+    )
+
+    // Trailing with label and extra label
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        trailing: .text(.labelAndExtraLabel("Label", "Extra"))
+    )
+
+    // Trailing with a badge according to type
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Notifications"),
+        trailing: .badge(.count(.init(3, accessibilityLabel: "3 notifications", status: .negative, size: .medium)))
+    )
+
+    // Trailing with a tag
+    let tag = OUDSTag(label: "New", size: .small)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Feature"),
+        trailing: .tag(tag)
+    )
+
+    // Trailing with an icon
+    let icon = OUDSListItemIcon(type: .info, size: .medium)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        trailing: .icon(icon)
+    )
+
+    // Trailing with an image
+    let image = OUDSListItemImage(asset: Image("il_placeholder"), size: .medium)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Label"),
+        trailing: .image(image)
+    )
+
+    // Trailing with a country flag
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "France"),
+        trailing: .flag(.init(asset: Image("il_flag_fr"), size: .medium))
+    )
+
+    // Trailing with an avatar
+    let avatar = OUDSListItemAvatar(type: .initials("AB"), size: .medium)
+    OUDSStaticListItem(
+        data: OUDSListItemData(label: "Contact"),
+        trailing: .avatar(avatar)
+    )
+</code></pre><h2>Media appearance</h2><p>Images can be displayed with rounded corners using the <a href="../swiftuicore/view/oudslistitemroundedmedia(_:)/index.html"><code>oudsListItemRoundedMedia(_:)</code></a> view modifier.</p><h2>Small size behavior</h2><p>When the list item is displayed in small size (via <a href="../swiftuicore/view/oudslistitemsize(_:)/index.html"><code>oudsListItemSize(_:)</code></a>):</p><ul><li><p>Trailing elements such as avatars and icons are rendered in their smallest available size.</p></li><li><p>The extra label in <a href="texttype/labelandextralabel(_:_:)/index.html"><code>OUDSListItemTrailing.TextType.labelAndExtraLabel(_:_:)</code></a> is <b>ignored</b>.</p></li></ul><blockquote class="aside since"><p class="label">Since</p><p>3.0.0</p></blockquote><h2>Topics</h2><h3>Enumeration Cases</h3><ul><li><a href="avatar(_:)/index.html"><code>case avatar(OUDSListItemAvatar)</code><p>An avatar with icon, initials, or image.</p></a></li><li><a href="badge(_:)/index.html"><code>case badge(OUDSListItemTrailing.BadgeType)</code><p>A badge component providing status or count information.</p></a></li><li><a href="flag(_:)/index.html"><code>case flag(OUDSListItemFlag)</code><p>A country flag image.</p></a></li><li><a href="icon(_:)/index.html"><code>case icon(OUDSListItemIcon)</code><p>A status or custom icon.</p></a></li><li><a href="image(_:)/index.html"><code>case image(OUDSListItemImage)</code><p>A static image asset displayed at the leading position.</p></a></li><li><a href="tag(_:)/index.html"><code>case tag(OUDSTag)</code><p>A tag component providing categorization or status information.</p></a></li><li><a href="text(_:)/index.html"><code>case text(OUDSListItemTrailing.TextType)</code><p>A textual element with configurable style.</p></a></li></ul><h3>Enumerations</h3><ul><li><a href="badgetype/index.html"><code>enum BadgeType</code><p>The type of badge displayed.</p></a></li><li><a href="texttype/index.html"><code>enum TextType</code><p>Defines the type of trailing text displayed in the list item.</p></a></li></ul></article></noscript><div id="app"></div></body></html>
