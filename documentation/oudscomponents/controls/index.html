@@ -24,7 +24,7 @@ OUDSCheckboxItem("We live in a fabled world",
                  isReversed: true,
                  isError: true,
                  hasDivider: true)
-</code></pre><h4>Checkbox picker</h4><p>Checkboxes can be embeded in a checkbox picker (<a href="../oudscheckboxpicker/index.html"><code>OUDSCheckboxPicker</code></a>) so as to let the users to select one or more items within several.</p><pre class="swift"><code>// Define the elements to display in checkboxes using OUDSCheckboxPickerData.
+</code></pre><h4>Checkbox picker</h4><p>Checkboxes can be embeded in a checkbox picker (<code>OUDSCheckboxPicker</code>) so as to let the users to select one or more items within several.</p><pre class="swift"><code>// Define the elements to display in checkboxes using OUDSCheckboxPickerData.
 // This object has the same properties as the OUDSCheckboxItem,
 // and some of them are optional with default values set
 var someDataToPopulate: [OUDSCheckboxPickerData&lt;String&gt;] {
@@ -88,7 +88,7 @@ OUDSRadioItem("Lucy in the Sky with Diamonds",
               image: OUDSImage(asset: Image(decorative: "il_someImage"),
                                flipped: layoutDirection == .rightToLeft,
                                renderingMode: .original))
-</code></pre><h4>Radio picker</h4><p>Radio items can be embeded in a radio picker so as to let the users to select only one item within several (<a href="../oudsradiopicker/index.html"><code>OUDSRadioPicker</code></a>).</p><pre class="swift"><code>// Define the elements to display in radio buttons using OUDSRadioPickerData.
+</code></pre><h4>Radio picker</h4><p>Radio items can be embeded in a radio picker so as to let the users to select only one item within several (<code>OUDSRadioPicker</code>).</p><pre class="swift"><code>// Define the elements to display in radio buttons using OUDSRadioPickerData.
 // This object has the same properties as the OUDSRadioItem,
 // and some of them are optional withdefault values set
 var someDataToPopulate: [OUDSRadioPickerData&lt;String&gt;] {
@@ -174,7 +174,7 @@ OUDSFilterChip(image: OUDSImage(asset: Image("ic_heart")), text: "Heart", select
 
 // Filter chip with text and raw icon (not tinted)
 OUDSFilterChip(image: OUDSImage(asset: Image("ic_brand"), renderingMode: .original), text: "Brand") {}
-</code></pre><h4>Chip picker</h4><p>The library proposes a chip picker (<a href="../oudschippicker/index.html"><code>OUDSChipPicker</code></a>) to make easily filtering with two kinds of selection:</p><ul><li><p><b>single or none</b>: to select or unselect one option only</p></li><li><p><b>single</b>: to select at least one option</p></li><li><p><b>multiple</b>: to select several options</p></li></ul><pre class="swift"><code>// Define the elements to display in filter chip using OUDSChipPickerData.
+</code></pre><h4>Chip picker</h4><p>The library proposes a chip picker (<code>OUDSChipPicker</code>) to make easily filtering with two kinds of selection:</p><ul><li><p><b>single or none</b>: to select or unselect one option only</p></li><li><p><b>single</b>: to select at least one option</p></li><li><p><b>multiple</b>: to select several options</p></li></ul><pre class="swift"><code>// Define the elements to display in filter chip using OUDSChipPickerData.
 enum Drink: String, CaseIterable {
     case virginHolyLava, ipaBeer, mineralWater
 }
@@ -221,7 +221,7 @@ OUDSChipPicker(title: "Select a drink", selection: $selection, chips: someDataTo
 
 // Here the picker with title, selection and data
 OUDSChipPicker(title: "Select a drink", selections: $selections, chips: someDataToPopulate)
-</code></pre><h3>Password input</h3><p>The library provides an <a href="../oudspasswordinput/index.html"><code>OUDSPasswordInput</code></a> based on a <a href="../oudstextinput/index.html"><code>OUDSTextInput</code></a> to let user provides password in a secure text field.</p><pre class="swift"><code>// The password to display and edit
+</code></pre><h3>Password input</h3><p>The library provides an <code>OUDSPasswordInput</code> based on a <code>OUDSTextInput</code> to let user provides password in a secure text field.</p><pre class="swift"><code>// The password to display and edit
 @State var password: String = ""
 
 // A basic password input with label
@@ -232,7 +232,7 @@ OUDSPasswordInput(label: "Password", password: $password, lockIcon: true, helper
 
 // Password with prefix
 OUDSPasswordInput(label: "Password", password: $password, prefix: "CORP-")
-</code></pre><h3>Pin Code Input</h3><p>The library provides an <a href="../oudspincodeinput/index.html"><code>OUDSPinCodeInput</code></a> to let user provides PIN code or OTP code with only digits.</p><pre class="swift"><code>// The value with the code
+</code></pre><h3>Pin Code Input</h3><p>The library provides an <code>OUDSPinCodeInput</code> to let user provides PIN code or OTP code with only digits.</p><pre class="swift"><code>// The value with the code
 @State private var pinCode: String = ""
 
 // By default, the PIN code input displays only 6 boxes
@@ -275,7 +275,7 @@ OUDSTextArea(label: "Comments", text: $text, helperLink: helperLink)
 OUDSTextArea(label: "Comments",
              text: $text,
              status: .error(message: "This field cannot be empty."))
-</code></pre><h3>Text input</h3><p>The library provides useful components for forms like <a href="../oudstextinput/index.html"><code>OUDSTextInput</code></a> to let user write text data and be helped if needed. Such components can have or not a leading icon or a trailing action with or without placeholders.</p><pre class="swift"><code>// The text to display and edit
+</code></pre><h3>Text input</h3><p>The library provides useful components for forms like <code>OUDSTextInput</code> to let user write text data and be helped if needed. Such components can have or not a leading icon or a trailing action with or without placeholders.</p><pre class="swift"><code>// The text to display and edit
 @State var text: String = ""
 
 // Empty text and no placeholder
