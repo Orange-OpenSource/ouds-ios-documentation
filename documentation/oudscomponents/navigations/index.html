@@ -63,6 +63,34 @@ OUDSStaticListItem(
     data: OUDSListItemData(label: "Status"),
     trailing: .image(OUDSListItemImage(asset: Image("status_icon"), size: .small))
 )
+
+// List item with slot (displayed under texts, before helper text)
+OUDSStaticListItem(
+    data: OUDSListItemData(
+        label: "With slot",
+        textSlot: .init { Text("Additional content") },
+        helperText: "Helper text"
+    )
+)
+
+// List item with bottom slot (displayed under main content, before helper text)
+OUDSStaticListItem(
+    data: OUDSListItemData(
+        label: "With bottom slot",
+        bottomSlot: .init { Text("Bottom content") },
+        helperText: "Helper text"
+    )
+)
+
+// List item with both slot and bottomSlot
+OUDSStaticListItem(
+    data: OUDSListItemData(
+        label: "Label",
+        textSlot: .init { Text("Slot content") },
+        bottomSlot: .init { Text("Bottom content") },
+        helperText: "Helper text"
+    )
+)
 </code></pre><h4>Navigable list item</h4><p>Use <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> when tapping the row should trigger an action. The <a href="../oudsnavigationlistitemindicatortype/index.html"><code>OUDSNavigationListItemIndicatorType</code></a> defines the visual indicator shown:</p><pre class="swift"><code>// Forward navigation (default)
 OUDSNavigationListItem(
     data: OUDSListItemData(label: "Next screen")
@@ -117,6 +145,40 @@ OUDSNavigationListItem(
     leading: .image(OUDSListItemImage(asyncImage: asyncImageWithPlaceholder, description: "Product thumbnail", size: .medium))
 ) {
     // Navigate to product
+}
+
+// List item with slot (displayed under texts, before helper text)
+OUDSNavigationListItem(
+    data: OUDSListItemData(
+        label: "Settings",
+        textSlot: .init { Text("Configure options") },
+        helperText: "Helper text"
+    )
+) {
+    // Navigate to settings
+}
+
+// List item with bottomSlot (displayed under main content, before helper text)
+OUDSNavigationListItem(
+    data: OUDSListItemData(
+        label: "Profile",
+        bottomSlot: .init { Text("Additional info") },
+        helperText: "Helper text"
+    )
+) {
+    // Navigate to profile
+}
+
+// List item with both slot and bottomSlot
+OUDSNavigationListItem(
+    data: OUDSListItemData(
+        label: "Settings",
+        textSlot: { Text("Slot content") },
+        bottomSlot: { Text("Bottom content") },
+        helperText: "Helper text"
+    )
+) {
+    // Navigate to settings
 }
 </code></pre><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
 // Declare a @State to hold the selected tab index, then pass it as a binding.
