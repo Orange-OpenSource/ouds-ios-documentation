@@ -1,0 +1,21 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>WhiteLabelTheme</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="This White Label theme is a specific theme. It has been designed to let users have their own theme to update like a grey label theme, or to keep as is like a white label theme." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Theme White Label</a></li><li>WhiteLabelTheme</li></ul><p>Class</p><h1>WhiteLabelTheme</h1><p>This White Label theme is a specific theme. It has been designed to let users have their own theme to update like a grey label theme, or to keep as is like a white label theme.</p><pre><code>final class WhiteLabelTheme</code></pre></section><h2>Overview</h2><p>The White Label theme is based on the Wireframe theme which is dedicated to mockups and prototypes. However is is possible to override the semantic tokens of colors, change the tuning and choose the font family to apply.</p><p>To get it:</p><pre class="swift"><code>    @Environment(\.theme) var theme
+</code></pre><h2>Integration</h2><p>To use this theme, inject it to your view using <code>OUDSThemeableView</code> and get it through environment variable.</p><pre class="swift"><code>    @main
+    struct YourApp: App {
+        var body: some Scene {
+            WindowGroup {
+                OUDSThemeableView(theme: WhiteLabelTheme()) {
+                    // Your root view
+                }
+            }
+        }
+    }
+</code></pre><h1>Theme tuning</h1><p>By default the theme uses <code>Tuning.Wireframe</code>, but it can be changed.</p><p>To apply the tuning:</p><pre class="swift"><code>    // Define your theme tuning, here everything rounded
+    let tuning = Tuning(hasRoundedButtons: true,
+                        hasRoundedTextInputs: true,
+                        hasRoundedAlertMessages: true,
+                        hasRoundedProgressIndicators: true,
+                        hasRoundedListItems: true)
+
+    // Apply it to your theme
+    let theme = WhiteLabelTheme(tuning: tuning)
+</code></pre><p>Note the <code>Tuning</code> only defines flags the components will read. But in the end the rounded corners are defined in tokens. Thus even if the rounded corners are enabled in <code>Tuning</code>, it the same radius values are used in the components for both rounded and not rounded cases the component may not change.</p><h2>Tokens versions</h2><p>See the tokens version from <code>WireframeTheme</code>.</p><blockquote class="aside since"><p class="label">Since</p><p>3.1.0</p></blockquote><h2>Topics</h2><h3>Initializers</h3><ul><li><a href="init(colors:colorscharts:colorsdecorative:name:fontfamily:tuning:)/index.html"><code>init(colors: (any AllColorSemanticTokensProvider)?, colorsCharts: (any AllColorChartSemanticTokensProvider)?, colorsDecorative: (any AllColorDecorativeSemanticTokensProvider)?, name: String?, fontFamily: String, tuning: Tuning?)</code><p>Constructor of the <code>WhiteLabelTheme</code> theme, based on <code>WireframeTheme</code> but with small flexibilities.</p></a></li></ul></article></noscript><div id="app"></div></body></html>
