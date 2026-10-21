@@ -3,13 +3,13 @@
 
     // Usage as leading element in a list item
     OUDSStaticListItem(
-        data: OUDSListItemData(label: "Information"),
+        data: OUDSListItemData(label: .textual("Information")),
         leading: .flag(.init(asset: Image(decorative: "il_flag_fr"), description: "France"))
     )
 
     // Usage as trailing element in a list item
     OUDSStaticListItem(
-        data: OUDSListItemData(label: "Warning"),
+        data: OUDSListItemData(label: .textual("Warning")),
         trailing: .flag(.init(asset: Image(decorative: "il_flag_fr"), description: "France"))
     )
 </code></pre><blockquote class="aside since"><p class="label">Since</p><p>3.0.0</p></blockquote><h2>Topics</h2><h3>Initializers</h3><ul><li><a href="init(asset:description:)/index.html"><code>init(asset: Image, description: String)</code><p>Creates an icon element for use in a list item at the leading or trailing position.</p></a></li></ul><h3>Instance Properties</h3><ul><li><a href="body/index.html"><code>var body: some View</code></a></li></ul></article></noscript><div id="app"></div></body></html>

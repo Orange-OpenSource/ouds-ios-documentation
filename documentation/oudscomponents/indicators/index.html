@@ -25,6 +25,41 @@ OUDSLinearProgressIndicator(progress: 0.5, helperText: .percent(description: "Up
 
 // An indeterminate horizontal bar with a helper text start aligned 
 OUDSLinearProgressIndicator(status: .info, helperText: "Processing…", helperTextAlignment: .start)
+</code></pre><h3>Skeletons</h3><p>A skeleton is a UI element that indicates when content is loading. The <a href="../oudsskeleton/index.html"><code>OUDSSkeleton</code></a> enhances user experience by temporarily replacing content with gray areas or animations that simulate the visual structure of the forthcoming content.</p><h4>Activate skeleton for OUDS components</h4><p>Lot of components in OUDS library propose their own skeleton representation according to skeleton state set in the SwiftUI environment. Apply <code>showSkeleton(isVisible:isAnimated:)</code> to update the state on the view and its children to inform all components in the hierarchy to be displayed in skeleton.</p><pre class="swift"><code>    @State var isLoading = false
+
+    var body: some View {
+        VStack {
+            OUDSHeading("My header")
+            OUDSAlertMessage(label: "Some text here", description: "You should read this text")
+            OUDSButton(text: "Do some action") { isLoading = true }
+        }
+        .showSkeleton(isVisible: isLoading) 
+    }
+</code></pre><h3>Draw skeletons</h3><p>It is possible to define a skeleton using <a href="../oudsskeleton/index.html"><code>OUDSSkeleton</code></a> and a frame.</p><pre class="swift"><code>    VStack {
+        // Heading skeleton
+        OUDSSkeleton(securityMargin: true).frame(width: 180, height: 48)
+
+        // Body skeleton
+        OUDSSkeleton(securityMargin: true).frame(width: 300, height: 150)
+
+        // Footer skeleton
+        OUDSSkeleton(securityMargin: true).frame(width: 180, height: 54)
+    }
+</code></pre><h3>Prepare Views for skeleton layout</h3><p>The <code>skeleton</code> helper applies skeleton on top of a View; the skeleton layout will be rendered with <code>showSkeleton(isVisible:)</code>.</p><pre class="swift"><code>    var body: some View {
+        VStack(spacing: 20) {
+            Text("The title")
+                .skeleton()
+            
+            Button {    
+            } label: {
+                VStack {
+                    Text("Title")
+                    Label("Subtitle", systemImage: "phone")
+                }
+            }
+            .skeleton()
+        }
+    }
 </code></pre><h3>Tag</h3><p>An <a href="../oudstag/index.html"><code>OUDSTag</code></a> is a small element that shows short information like a label, keyword, or category. It helps users quickly find, group, or understand content.</p><pre class="swift"><code>// Text only with neutral status, for emphasized appearance with rounded shape in default size
 OUDSTag(label: "Label",  status: .neutral(), appearance: .emphasized, shape: .rounded, size: .default)
 // Or also
@@ -52,6 +87,17 @@ OUDSTag(loadingLabel: "Processing...", shape: .rounded, size: .small)
 
 // Tag with determinate circular progress indicator, with rounded shape in default size
 OUDSTag(loadingLabel: "Processing...", progress: 0.75)
+</code></pre><h3>Categorical Tag</h3><p>An <a href="../oudscategoricaltag/index.html"><code>OUDSCategoricalTag</code></a> is like an <a href="../oudstag/index.html"><code>OUDSTag</code></a> but without appearance notion and with categories instead of statuses.</p><pre class="swift"><code>     // Text only with category 1, rounded shape, default size
+     OUDSCategoricalTag(label: "Label", category: .category1)
+
+     // Text with category 2 and bullet
+     OUDSCategoricalTag(label: "Label", category: .category2, leading: .bullet)
+
+     // Text with category 3 and custom icon
+     OUDSCategoricalTag(label: "Label", category: .category3, leading: .icon(OUDSImage(asset: Image(decorative: "ic_heart"))))
+
+     // Small size, square shape
+     OUDSCategoricalTag(label: "Label", category: .category4, shape: .square, size: .small)
 </code></pre><h3>Input Tag</h3><p>An <a href="../oudsinputtag/index.html"><code>OUDSInputTag</code></a> is a small element that shows short information like a label, keyword, or category, which can be removed or changed on tap.</p><pre class="swift"><code>// Create an input tag
 OUDSInputTag("Label") {
     // Do something, usually remove itself from a list

@@ -15,13 +15,13 @@
 
     // Usage as leading element in a list item
     OUDSStaticListItem(
-        data: OUDSListItemData(label: "Information"),
+        data: OUDSListItemData(label: .textual("Information")),
         leading: .icon(OUDSListItemIcon(status: .info, description: "", size: .medium))
     )
 
     // Usage as trailing element in a list item
     OUDSStaticListItem(
-        data: OUDSListItemData(label: "Warning"),
+        data: OUDSListItemData(label: .textual("Warning")),
         trailing: .icon(OUDSListItemIcon(status: .warning, description: "", size: .medium))
     )
 </code></pre><blockquote class="aside since"><p class="label">Since</p><p>3.0.0</p></blockquote><h2>Topics</h2><h3>Initializers</h3><ul><li><a href="init(status:description:size:)/index.html"><code>init(status: OUDSListItemIcon.IconStatus, description: String, size: OUDSListItemIcon.Size)</code><p>Creates an icon element for use in a list item at the leading or trailing position.</p></a></li></ul><h3>Instance Properties</h3><ul><li><a href="body/index.html"><code>var body: some View</code></a></li></ul><h3>Enumerations</h3><ul><li><a href="iconstatus/index.html"><code>enum IconStatus</code><p>Defines the type of icon to display. Each type determines the icon asset and its semantic foreground color.</p></a></li><li><a href="size/index.html"><code>enum Size</code><p>Defines the available sizes for the icon. When the icon is embedded in a list item with <code>.small</code> size, this parameter is ignored and a smallest size is always used.</p></a></li></ul></article></noscript><div id="app"></div></body></html>

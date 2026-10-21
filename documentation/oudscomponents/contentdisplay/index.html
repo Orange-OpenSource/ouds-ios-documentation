@@ -28,4 +28,14 @@ OUDSBulletList(type: .ordered) {
     OUDSBulletList.Item("Label 2")
     OUDSBulletList.Item("Label 3")
 }
+</code></pre><p>The text of each item is an <a href="../oudstextualcontent/index.html"><code>OUDSTextualContent</code></a>: a raw <code>String</code> (a string literal is enough), a localized string or a rich text.</p><pre class="swift"><code>OUDSBulletList {
+    // Raw text, same as .raw("Raw text")
+    OUDSBulletList.Item("Raw text")
+
+    // Localized text
+    OUDSBulletList.Item(.localized("item_label", bundle: Bundle.module))
+
+    // Rich text
+    OUDSBulletList.Item(.rich(AttributedString(markdown: "A **rich** text"))) // Manage in your side errors for init
+}
 </code></pre></article></noscript><div id="app"></div></body></html>
