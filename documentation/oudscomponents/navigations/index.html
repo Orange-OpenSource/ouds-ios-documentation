@@ -1,4 +1,4 @@
-<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>Navigations</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.0b7dc663.js"></script><script defer="defer" src="/js/index.b232e9de.js"></script><link href="/css/index.19043b1e.css" rel="stylesheet"><meta content="Some components can be used for navigation." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>Navigations</li></ul><p>Article</p><h1>Navigations</h1><p>Some components can be used for <b>navigation</b>.</p></section><h2>Overview</h2><h3>Links</h3><p>The <a href="../oudslink/index.html"><code>OUDSLink</code></a> proposes layout with text only or text with icon. It also proposes layout to navigate forward, backward and outside the app. The link can be displayed in <code>small</code> or <code>default</code> size.</p><pre class="swift"><code>// Text in small size, with next indicator
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>Navigations</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.88e02fc3.js"></script><script defer="defer" src="/js/index.f7bc5188.js"></script><link href="/css/index.63be42cf.css" rel="stylesheet"><meta content="Some components can be used for navigation." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>Navigations</li></ul><p>Article</p><h1>Navigations</h1><p>Some components can be used for <b>navigation</b>.</p></section><h2>Overview</h2><h3>Links</h3><p>The <a href="../oudslink/index.html"><code>OUDSLink</code></a> proposes layout with text only or text with icon. It also proposes layout to navigate forward, backward and outside the app. The link can be displayed in <code>small</code> or <code>default</code> size.</p><pre class="swift"><code>// Text in small size, with next indicator
 OUDSLink(text: "Feedback", indicator: .next, size: .small) { /* the action to process */ }
 
 // Text and icon in default size
@@ -194,7 +194,20 @@ OUDSNavigationListItem(
 ) {
     // Navigate to settings
 }
-</code></pre><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
+</code></pre><h4>Navigation link</h4><p>Use <a href="../oudsnavigationlink/index.html"><code>OUDSNavigationLink</code></a> to get a <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> backed by a <code>NavigationLink</code> which displays a destination view when tapped. It accepts the same content as <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a>: an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> and optional leading and trailing elements. The label of the data is also used as navigation title of the destination.</p><pre class="swift"><code>// Simple navigation link
+OUDSNavigationLink(data: OUDSListItemData(label: .textual("Profile"))) {
+    MyProfileView()
+}
+
+// With description, leading avatar and trailing text
+OUDSNavigationLink(
+    data: OUDSListItemData(label: "Profile", description: "View your profile"),
+    leading: .avatar(OUDSListItemAvatar(type: .icon, size: .medium)),
+    trailing: .text(.labelMuted("Details"))
+) {
+    MyProfileView()
+}
+</code></pre><blockquote class="aside note"><p class="label">Note</p><p>The initializers of <a href="../oudsnavigationlink/index.html"><code>OUDSNavigationLink</code></a> taking a <code>title</code> or a <code>LocalizedStringKey</code> are deprecated since 3.3.0, use the one taking an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> instead. See the migration guide.</p></blockquote><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
 // Declare a @State to hold the selected tab index, then pass it as a binding.
 @State private var selectedTab = 0
 
