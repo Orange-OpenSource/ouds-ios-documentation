@@ -1,0 +1,66 @@
+<!doctype html><html lang="en-US" class="no-js"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.svg" color="#333333"><title>OUDSActionListItem</title><script>var baseUrl = "/"</script><script defer="defer" src="/js/chunk-vendors.88e02fc3.js"></script><script defer="defer" src="/js/index.f7bc5188.js"></script><link href="/css/index.63be42cf.css" rel="stylesheet"><meta content="A list item component used to display a row of interactive content which triggers an action when tapped, for example to make a call, send an email or share content." name="description"/></head><body data-color-scheme="auto"><noscript><article><section><ul><li><a href="../index.html">Components</a></li><li>OUDSActionListItem</li></ul><p>Structure</p><h1>OUDSActionListItem</h1><p>A list item component used to display a row of interactive content which triggers an action when tapped, for example to make a call, send an email or share content.</p><ul id="availability"><li>iOS 15.0+</li><li>macOS 13.0+</li><li>tvOS 16.0+</li><li>visionOS 1.0+</li><li>watchOS 11.0+</li></ul><pre><code>@MainActor struct OUDSActionListItem</code></pre></section><h2>Mentioned In</h2><ul><li><a href="../navigations/index.html">Navigations</a></li></ul><h2>Overview</h2><p><a href="."><code>OUDSActionListItem</code></a> is an interactive variant of the list item, like <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a>, but it never displays any indicator (no next, previous or external indicator) because it does not navigate: it performs an action.</p><p>The item typically contains a label, and optionally a description, an overline, an extra label, a text slot, a bottom slot, and a helper text — all provided through <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a>. It can also include an optional leading element (such as an icon, image, avatar, flag or custom view) and an optional trailing element (such as a text, badge, tag, icon, image, avatar, flag or custom view)</p><p>For non-interactive, display-only list items, see <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a>. For list items which navigate to another screen or outside the app, see <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a>.</p><h2>Code samples</h2><pre class="swift"><code>    // Simple list item triggering an action
+    OUDSActionListItem(
+        data: OUDSListItemData(label: .textual("Call us"))
+    ) {
+        // Start the call
+    }
+
+    // List item with leading icon and description
+    OUDSActionListItem(
+        data: OUDSListItemData(label: "Call customer service", description: "Free number"),
+        leading: .icon(OUDSListItemIcon(status: .neutral(asset: Image("ic_phone"), description: ""), size: .medium))
+    ) {
+        // Start the call
+    }
+
+    // List item with leading avatar and trailing text
+    let avatar = OUDSListItemAvatar(type: .icon, size: .medium)
+
+    OUDSActionListItem(
+        data: OUDSListItemData(label: "Profile", description: "Share your profile"),
+        leading: .avatar(avatar),
+        trailing: .text(.labelMuted("Share"))
+    ) {
+        // Share the profile
+    }
+
+    // List item with a custom view as trailing, e.g. a gauge showing a remaining SMS credit
+    OUDSActionListItem(
+        data: OUDSListItemData(label: .textual("SMS credit")),
+        trailing: .slot {
+            OUDSCircularProgressIndicator(progress: 0.75)
+        }
+    ) {
+        // Refill the credit
+    }
+
+    // List item with slot (displayed under texts, before helper text)
+    OUDSActionListItem(
+        data: OUDSListItemData(
+            label: "Settings",
+            textSlot: .init { Text("Configure options") },
+            helperText: "Helper text"
+        )
+    ) {
+        // Perform the action
+    }
+
+    // List item with bottomSlot (displayed under main content, before helper text)
+    OUDSActionListItem(
+        data: OUDSListItemData(
+            label: "Profile",
+            bottomSlot: .init { Text("Additional info") },
+            helperText: "Helper text"
+        )
+    ) {
+        // Perform the action
+    }
+</code></pre><h2>Leading elements</h2><p>The leading position (before the texts) accepts one optional element via <a href="../oudslistitemleading/index.html"><code>OUDSListItemLeading</code></a>:</p><ul><li><p><code>.icon(OUDSListItemIcon)</code>: A status or custom icon (neutral, info, warning, negative, positive)</p></li><li><p><code>.image(OUDSListItemImage)</code>: A static image asset</p></li><li><p><code>.flag(OUDSListItemFlag)</code>: A country flag image</p></li><li><p><code>.avatar(OUDSListItemAvatar)</code>: An avatar with icon, initials, or image</p></li><li><p><code>.slot { ... }</code>: Any custom SwiftUI view (e.g. a gauge)</p></li></ul><h2>Trailing elements</h2><p>The trailing position (after the texts) accepts one optional element via <a href="../oudslistitemtrailing/index.html"><code>OUDSListItemTrailing</code></a>, like:</p><ul><li><p><code>.text(.label(String))</code>: A default-styled label</p></li><li><p><code>.text(.labelMuted(String))</code>: A muted (secondary) label</p></li><li><p><code>.text(.labelStrong(String))</code>: An emphasized (bold) label</p></li><li><p><code>.text(.labelAndExtraLabel(String, String))</code>: A label with an additional extra label below</p></li><li><p><code>.badge(.count(OUDSBadgeCount)</code>: A badge with count</p></li><li><p><code>.badge(.standard(OUDSBadgeStandard)</code>: A badge with standard status</p></li><li><p><code>.tag(OUDSTag)</code>: A tag for categorization</p></li><li><p><code>.icon(OUDSListItemIcon)</code>: A status or custom icon</p></li><li><p><code>.image(OUDSListItemImage)</code>:  A static image asset</p></li><li><p><code>.flag(OUDSListItemFlag)</code>: A country flag image</p></li><li><p><code>.avatar(OUDSListItemAvatar)</code>: An avatar with icon, initials, or image</p></li><li><p><code>.slot { ... }</code>: Any custom SwiftUI view</p></li></ul><h2>View modifiers</h2><p>Several view modifiers can be applied to customize the appearance and layout of list items:</p><ul><li><p><a href="../swiftuicore/view/oudslistitemsize(_:)/index.html"><code>oudsListItemSize(_:)</code></a> — Sets the size of the item (<code>.standard</code> or <code>.small</code>).</p></li><li><p><a href="../swiftuicore/view/oudslistitemcontaineralignment(_:)/index.html"><code>oudsListItemContainerAlignment(_:)</code></a> — Aligns leading, trailing, and text containers (<code>.top</code> or <code>.center</code>).</p></li><li><p><a href="../swiftuicore/view/oudslistitemstyle(divider:background:)/index.html"><code>oudsListItemStyle(divider:background:)</code></a> — Applies a item style with optional divider and background.</p></li><li><p><a href="../swiftuicore/view/oudslistcardstyle(_:)/index.html"><code>oudsListCardStyle(_:)</code></a> — Applies a card style on list items.</p></li><li><p><a href="../swiftuicore/view/oudslistitemroundedmedia(_:)/index.html"><code>oudsListItemRoundedMedia(_:)</code></a> — Defines whether media (images) should be displayed with rounded corners.</p></li></ul><pre class="swift"><code>    OUDSActionListItem(
+        data: OUDSListItemData(label: .textual("Call us"))
+    ) {
+        // Start the call
+    }
+    .oudsListItemSize(.small)
+    .oudsListItemContainerAlignment(.top)
+    .oudsListCardStyle(.outlined)
+</code></pre><h2>Accessibility considerations</h2><p>The item is vocalized as a button. You should test with Voice Over your <code>OUDSActionListItem</code> to check which parts are vocalized and if they are well vocalized, specially for the avatars, badges, tags and slot views.  Do not vocalize decorative elements.</p><p>If flags are used, do not suppose users know the flags and add in the texts parts of the <code>OUDSActionListItem</code> the country or region name.</p><p>Be sure the available texts are enough to explain to the users the action which will be performed.</p><h2>Design documentation</h2><p><a href="https://r.orange.fr/r/S-ouds-doc-navigation-list-item">unified-design-system.orange.com</a></p><h2>Themes rendering</h2><h3>Orange</h3><p><picture><img alt="A button component in light and dark modes with Orange theme" decoding="async" loading="lazy" src="../../../users/pylapersonne/documents/2_projects/17-ouds/ouds-ios/ouds/core/components/sources/_oudscomponents.docc/resources/navigations/listitem/component_action_list_item_orange.png"/></picture></p><h3>Orange Compact</h3><p><picture><img alt="A button component in light and dark modes with Orange Compact theme" decoding="async" loading="lazy" src="../../../users/pylapersonne/documents/2_projects/17-ouds/ouds-ios/ouds/core/components/sources/_oudscomponents.docc/resources/navigations/listitem/component_action_list_item_orangecompact.png"/></picture></p><h3>Sosh</h3><p><picture><img alt="A button component in light and dark modes with Sosh theme" decoding="async" loading="lazy" src="../../../users/pylapersonne/documents/2_projects/17-ouds/ouds-ios/ouds/core/components/sources/_oudscomponents.docc/resources/navigations/listitem/component_action_list_item_sosh.png"/></picture></p><h3>Wireframe</h3><p><picture><img alt="A button component in light and dark modes with Wireframe theme" decoding="async" loading="lazy" src="../../../users/pylapersonne/documents/2_projects/17-ouds/ouds-ios/ouds/core/components/sources/_oudscomponents.docc/resources/navigations/listitem/component_action_list_item_wireframe.png"/></picture></p><blockquote class="aside version"><p class="label">Version</p><p>3.4.0 (Figma component design version)</p></blockquote><blockquote class="aside since"><p class="label">Since</p><p>0.0.0 (this is a draft component)</p></blockquote><h2>Topics</h2><h3>Initializers</h3><ul><li><a href="init(data:leading:trailing:action:)/index.html"><code>init(data: OUDSListItemData, leading: OUDSListItemLeading?, trailing: OUDSListItemTrailing?, action: () -&gt; Void)</code></a><p>Creates a list item with textual data which triggers an action when tapped.</p></li></ul><h3>Instance Properties</h3><ul><li><a href="body/index.html"><code>var body: some View</code></a></li></ul></article></noscript><div id="app"></div></body></html>

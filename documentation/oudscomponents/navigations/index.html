@@ -12,99 +12,45 @@ OUDSLink(text: "Back", indicator: .previous, size: .default) { /* the action to 
 
 // Navigate to outside the app with link in a default size
 OUDSLink(text: "Open outside", indicator: .external, size: .default) { /* the action to process */ }
-</code></pre><h3>List items</h3><p>The <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> displays a non-interactive row of information, while <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> adds tap interaction and a navigation affordance indicator (chevron or external link icon).</p><p>Both components use an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> model for their textual content, and accept optional leading and trailing elements.</p><h4>Static list item</h4><p>Use <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> when the row is display-only and should not trigger any action or navigation.</p><pre class="swift"><code>// Simple list item with a label only
-OUDSStaticListItem(data: OUDSListItemData(label: .textual("Label")))
-
-// List item with full textual content
-OUDSStaticListItem(data: OUDSListItemData(
-    label: .textual("Label", isBold: true),
-    description: "Description",
-    overline: "Overline",
-    extraLabel: "Extra label",
-    helperText: "Helper text providing guidance"
-))
-
-// List item with a leading icon and a trailing badge
-let icon = OUDSListItemIcon(status: .info, description: "", size: .medium)
-
-OUDSStaticListItem(
-    data: OUDSListItemData(label: .textual("Notifications")),
-    leading: .icon(icon),
-    trailing: .badge(.count(.init(3, accessibilityLabel: "3 notifications", status: .negative, size: .medium)))
-)
-
-// List item with a leading image (static asset)
-OUDSStaticListItem(
-    data: OUDSListItemData(label: .textual("Product")),
-    leading: .image(OUDSListItemImage(asset: Image("product_thumb"), size: .medium))
-)
-
-// List item with a leading async image (from URL)
-OUDSStaticListItem(
-    data: OUDSListItemData(label: .textual("Remote Product")),
-    leading: .image(OUDSListItemImage(asyncImage: AsyncImage(url: URL(string: "https://example.com/image.png")), description: "Product image", size: .medium))
-)
-
-// List item with async image and custom placeholder
-let asyncImageWithPlaceholder = AsyncImage(url: URL(string: "https://example.com/image.png")) { image in
-    image.resizable()
-} placeholder: {
-    ProgressView()
+</code></pre><h3>List items</h3><p>The <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> displays a non-interactive row of information, <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> adds tap interaction and a navigation affordance indicator (chevron or external link icon), and <a href="../oudsactionlistitem/index.html"><code>OUDSActionListItem</code></a> adds tap interaction to trigger an action without any indicator.</p><p>All these components use an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> model for their textual content, and accept optional leading and trailing elements.</p><h4>Action list item</h4><p>Use <a href="../oudsactionlistitem/index.html"><code>OUDSActionListItem</code></a> when tapping the row should trigger an action which is not a navigation (e.g. make a call, send an email, share content). It looks like an <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> but never displays any indicator.</p><pre class="swift"><code>// Simple action
+OUDSActionListItem(
+    data: OUDSListItemData(label: .textual("Call us"))
+) {
+    // Start the call
 }
 
-OUDSStaticListItem(
-    data: OUDSListItemData(label: .textual("Loading Product")),
-    leading: .image(OUDSListItemImage(asyncImage: asyncImageWithPlaceholder, description: "Product image", size: .medium))
-)
+// With a leading avatar and a trailing text
+let avatar = OUDSListItemAvatar(type: .icon, size: .medium)
 
-// List item with a trailing image
-OUDSStaticListItem(
-    data: OUDSListItemData(label: .textual("Status")),
-    trailing: .image(OUDSListItemImage(asset: Image("status_icon"), size: .small))
-)
+OUDSActionListItem(
+    data: OUDSListItemData(label: "Profile", description: "Share your profile"),
+    leading: .avatar(avatar),
+    trailing: .text(.labelMuted("Share"))
+) {
+    // Share the profile
+}
 
-// List item with slot (displayed under texts, before helper text)
-OUDSStaticListItem(
+// With a custom view as trailing
+OUDSActionListItem(
+    data: OUDSListItemData(label: .textual("SMS credit")),
+    trailing: .slot {
+        OUDSCircularProgressIndicator(progress: 0.75)
+    }
+) {
+    // Refill the credit
+}
+
+// With slot and bottomSlot
+OUDSActionListItem(
     data: OUDSListItemData(
-        label: "With slot",
-        textSlot: .init { Text("Additional content") },
-        helperText: "Helper text"
-    )
-)
-
-// List item with bottom slot (displayed under main content, before helper text)
-OUDSStaticListItem(
-    data: OUDSListItemData(
-        label: "With bottom slot",
-        bottomSlot: .init { Text("Bottom content") },
-        helperText: "Helper text"
-    )
-)
-
-// List item with both slot and bottomSlot
-OUDSStaticListItem(
-    data: OUDSListItemData(
-        label: "Label",
+        label: "Settings",
         textSlot: .init { Text("Slot content") },
         bottomSlot: .init { Text("Bottom content") },
         helperText: "Helper text"
     )
-)
-</code></pre><h5>Rich text content</h5><p>Every textual field (<code>label</code>, <code>description</code>, <code>overline</code>, <code>extraLabel</code>, <code>helperText</code>) accepts a raw <code>String</code>, a localized string or an <code>AttributedString</code>. The optional fields use <a href="../oudstextualcontent/index.html"><code>OUDSTextualContent</code></a> (<code>.raw</code> / <code>.localized</code> / <code>.rich</code>) while the label uses <a href="../oudslistitemdata/label/index.html"><code>OUDSListItemData.Label</code></a> (<code>.textual</code> / <code>.custom</code>, the <code>.text</code> case being deprecated since 3.2.0).</p><p>String literals are accepted thanks to <code>ExpressibleByStringLiteral</code> on both types, so plain text call sites remain concise: <code>label: "Label", description: "Description"</code>.</p><blockquote class="aside note"><p class="label">Note</p><p>a bare literal label with no textual field (<code>OUDSListItemData(label: "Label")</code>, or with only <code>textSlot</code> / <code>bottomSlot</code>) may select a deprecated initializer and emit a deprecation warning. Write <code>label: .textual("Label")</code> in that case.</p></blockquote><pre class="swift"><code>// Fully styled label and overline (user controls fonts, colors, markdown…)
-let styledLabel = AttributedString.from(text: "Premium",
-                                        foregroundColor: .orange,
-                                        font: .headline)
-let styledOverline = AttributedString.from(text: "FEATURED",
-                                           foregroundColor: .purple,
-                                           font: .caption)
-
-OUDSStaticListItem(data: OUDSListItemData(
-    label: .textual(.rich(styledLabel)),
-    description: "Plain description via string literal",
-    overline: .rich(styledOverline),
-    extraLabel: .localized("extra.label.key"),
-    helperText: .rich(AttributedString("A rich helper"))
-))
+) {
+    // Perform the action
+}
 </code></pre><h4>Navigable list item</h4><p>Use <a href="../oudsnavigationlistitem/index.html"><code>OUDSNavigationListItem</code></a> when tapping the row should trigger an action. The <a href="../oudsnavigationlistitemindicatortype/index.html"><code>OUDSNavigationListItemIndicatorType</code></a> defines the visual indicator shown:</p><pre class="swift"><code>// Forward navigation (default)
 OUDSNavigationListItem(
     data: OUDSListItemData(label: .textual("Next screen"))
@@ -207,7 +153,100 @@ OUDSNavigationLink(
 ) {
     MyProfileView()
 }
-</code></pre><blockquote class="aside note"><p class="label">Note</p><p>The initializers of <a href="../oudsnavigationlink/index.html"><code>OUDSNavigationLink</code></a> taking a <code>title</code> or a <code>LocalizedStringKey</code> are deprecated since 3.3.0, use the one taking an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> instead. See the migration guide.</p></blockquote><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
+</code></pre><blockquote class="aside note"><p class="label">Note</p><p>The initializers of <a href="../oudsnavigationlink/index.html"><code>OUDSNavigationLink</code></a> taking a <code>title</code> or a <code>LocalizedStringKey</code> are deprecated since 3.3.0, use the one taking an <a href="../oudslistitemdata/index.html"><code>OUDSListItemData</code></a> instead. See the migration guide.</p></blockquote><h4>Static list item</h4><p>Use <a href="../oudsstaticlistitem/index.html"><code>OUDSStaticListItem</code></a> when the row is display-only and should not trigger any action or navigation.</p><pre class="swift"><code>// Simple list item with a label only
+OUDSStaticListItem(data: OUDSListItemData(label: .textual("Label")))
+
+// List item with full textual content
+OUDSStaticListItem(data: OUDSListItemData(
+    label: .textual("Label", isBold: true),
+    description: "Description",
+    overline: "Overline",
+    extraLabel: "Extra label",
+    helperText: "Helper text providing guidance"
+))
+
+// List item with a leading icon and a trailing badge
+let icon = OUDSListItemIcon(status: .info, description: "", size: .medium)
+
+OUDSStaticListItem(
+    data: OUDSListItemData(label: .textual("Notifications")),
+    leading: .icon(icon),
+    trailing: .badge(.count(.init(3, accessibilityLabel: "3 notifications", status: .negative, size: .medium)))
+)
+
+// List item with a leading image (static asset)
+OUDSStaticListItem(
+    data: OUDSListItemData(label: .textual("Product")),
+    leading: .image(OUDSListItemImage(asset: Image("product_thumb"), size: .medium))
+)
+
+// List item with a leading async image (from URL)
+OUDSStaticListItem(
+    data: OUDSListItemData(label: .textual("Remote Product")),
+    leading: .image(OUDSListItemImage(asyncImage: AsyncImage(url: URL(string: "https://example.com/image.png")), description: "Product image", size: .medium))
+)
+
+// List item with async image and custom placeholder
+let asyncImageWithPlaceholder = AsyncImage(url: URL(string: "https://example.com/image.png")) { image in
+    image.resizable()
+} placeholder: {
+    ProgressView()
+}
+
+OUDSStaticListItem(
+    data: OUDSListItemData(label: .textual("Loading Product")),
+    leading: .image(OUDSListItemImage(asyncImage: asyncImageWithPlaceholder, description: "Product image", size: .medium))
+)
+
+// List item with a trailing image
+OUDSStaticListItem(
+    data: OUDSListItemData(label: .textual("Status")),
+    trailing: .image(OUDSListItemImage(asset: Image("status_icon"), size: .small))
+)
+
+// List item with slot (displayed under texts, before helper text)
+OUDSStaticListItem(
+    data: OUDSListItemData(
+        label: "With slot",
+        textSlot: .init { Text("Additional content") },
+        helperText: "Helper text"
+    )
+)
+
+// List item with bottom slot (displayed under main content, before helper text)
+OUDSStaticListItem(
+    data: OUDSListItemData(
+        label: "With bottom slot",
+        bottomSlot: .init { Text("Bottom content") },
+        helperText: "Helper text"
+    )
+)
+
+// List item with both slot and bottomSlot
+OUDSStaticListItem(
+    data: OUDSListItemData(
+        label: "Label",
+        textSlot: .init { Text("Slot content") },
+        bottomSlot: .init { Text("Bottom content") },
+        helperText: "Helper text"
+    )
+)
+</code></pre><h4>Rich text content</h4><p>Every textual field (<code>label</code>, <code>description</code>, <code>overline</code>, <code>extraLabel</code>, <code>helperText</code>) accepts a raw <code>String</code>, a localized string or an <code>AttributedString</code>. The optional fields use <a href="../oudstextualcontent/index.html"><code>OUDSTextualContent</code></a> (<code>.raw</code> / <code>.localized</code> / <code>.rich</code>) while the label uses <a href="../oudslistitemdata/label/index.html"><code>OUDSListItemData.Label</code></a> (<code>.textual</code> / <code>.custom</code>, the <code>.text</code> case being deprecated since 3.2.0).</p><p>String literals are accepted thanks to <code>ExpressibleByStringLiteral</code> on both types, so plain text call sites remain concise: <code>label: "Label", description: "Description"</code>.</p><blockquote class="aside note"><p class="label">Note</p><p>a bare literal label with no textual field (<code>OUDSListItemData(label: "Label")</code>, or with only <code>textSlot</code> / <code>bottomSlot</code>) may select a deprecated initializer and emit a deprecation warning. Write <code>label: .textual("Label")</code> in that case.</p></blockquote><pre class="swift"><code>// Fully styled label and overline (user controls fonts, colors, markdown…)
+let styledLabel = AttributedString.from(text: "Premium",
+                                        foregroundColor: .orange,
+                                        font: .headline)
+let styledOverline = AttributedString.from(text: "FEATURED",
+                                           foregroundColor: .purple,
+                                           font: .caption)
+
+OUDSStaticListItem(data: OUDSListItemData(
+    label: .textual(.rich(styledLabel)),
+    description: "Plain description via string literal",
+    overline: .rich(styledOverline),
+    extraLabel: .localized("extra.label.key"),
+    helperText: .rich(AttributedString("A rich helper"))
+))
+</code></pre><h3>Tab bars</h3><p>The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> provides a native SwiftUI <code>TabView</code> with use of OUDS effects and styles. The <a href="../oudstabbar/index.html"><code>OUDSTabBar</code></a> lets users define their own hierarchy of views associated to tab items.</p><pre class="swift"><code>// Use the OUDS tab bar to wrap tab bar items and associated views.
 // Declare a @State to hold the selected tab index, then pass it as a binding.
 @State private var selectedTab = 0
 
